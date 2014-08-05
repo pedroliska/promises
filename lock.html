@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+</head>
+<body>
+  
+  <button id="button">Get Factorial</button>
+  <p id="result"></p>
+  <input type="text"/>
+  <button>press me please</button>
+
+  <script>
+    function iterate(num) {
+      var count = 0;
+      while (count++ < num) {
+      }
+      return 'iterated ' + num + ' times';
+    }
+
+    $('#button').click(function() {
+      $('#result').text(iterate(10000000000));
+    });
+
+
+  </script>
+</body>
+</html>

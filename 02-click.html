@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <script src="resources/jquery.js"></script>
+  <script>
+    $(document).ready(function () {
+
+      function clickPromise(elementId) {
+        var promise = new Promise(function(resolveFn, rejectFn) {
+          $('#' + elementId).click(function() {
+            resolveFn();
+          });
+        });
+        return promise;
+      }
+
+      clickPromise('button1').then(function() {
+        $('#image1').css('display', 'inline');
+      });
+
+    });
+  </script>
+</head>
+<body>
+
+  <button id="button1">Show image</button><br />
+  <img id="image1" src="resources/happy.png" style="display: none"/>
+
+</body>
+</html>
