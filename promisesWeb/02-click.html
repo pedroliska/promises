@@ -7,9 +7,7 @@
 
       function clickPromise(elementId) {
         var promise = new Promise(function(resolveFn, rejectFn) {
-          $('#' + elementId).click(function() {
-            resolveFn();
-          });
+          $('#' + elementId).click(resolveFn);
         });
         return promise;
       }

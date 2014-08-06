@@ -6,29 +6,24 @@
     $(document).ready(function () {
 
       function clickPromise(elementId) {
-        var promise = new Promise(function(resolveFn, rejectFn) {
-          $('#' + elementId).click(function() {
-            resolveFn();
-          });
+        var promise = new Promise(function (resolveFn, rejectFn) {
+          $('#' + elementId).click(resolveFn);
         });
         return promise;
       }
-
       function delayPromise(seconds) {
-        var promise = new Promise(function(resolveFn, rejectFn) {
-          setTimeout(resolveFn, seconds * 1000);
+        var promise = new Promise(function (resolve, reject) {
+          setTimeout(resolve, seconds * 1000);
         });
         return promise;
       }
 
-
-      clickPromise('button1').then(function() {
+      clickPromise('button1').then(function () {
         $('#image1').css('display', 'inline');
         return delayPromise(2);
-      }).then(function() {
+      }).then(function () {
         $('#image1').attr('src', 'resources/happy.png');
       });
-
 
     });
   </script>
@@ -36,7 +31,7 @@
 <body>
 
   <button id="button1">Show image</button><br />
-  <img id="image1" src="resources/spinner.gif" style="display: none"/>
+  <img id="image1" src="resources/spinner.gif" style="display: none" />
 
 </body>
 </html>
