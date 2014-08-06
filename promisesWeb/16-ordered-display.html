@@ -13,13 +13,20 @@
       jsonPromise('book.aspx').then(function (bookInfo) {
 
         var promises = bookInfo.chapterUrls.map(jsonPromise);
-        return Promise.all(promises);
+        var sequence = promises.reduce(function (promiseSequence, chapterPromise) {
 
-      }).then(function (chapterInfos) {
-        chapterInfos.forEach(function (chapterInfo) {
-            var html = '<p><strong>'+ chapterInfo.title +'</strong> ' + chapterInfo.content + '</p>';
+          return promiseSequence.then(function () {
+            return chapterPromise;
+          }).then(function (chapterInfo) {
+            var html = '<p><strong>' + chapterInfo.title + '</strong> ' + chapterInfo.content + '</p>';
             $('#chapters').append(html);
-        });
+          });
+
+        }, Promise.resolve());
+
+        return sequence;
+
+      }).then(function () {
         $('#chapters').append('<strong>ALL DONE!</strong>');
       });
 
