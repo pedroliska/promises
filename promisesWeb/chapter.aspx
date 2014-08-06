@@ -1,5 +1,13 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" ContentType="application/json" %>
 <script runat="server">
+
+  protected void page_load(object o, EventArgs e)
+  {
+    var maxSeconds = 4;
+    var randomMiliseconds = new Random().Next(maxSeconds * 1000);
+    System.Threading.Thread.Sleep(randomMiliseconds);
+  }
+
   protected string ChapterNumber 
   {
     get { return Request.QueryString["c"]; }

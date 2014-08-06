@@ -2,12 +2,12 @@
 <script runat="server">
   protected string ChapterUrls(int chapterCount)
   {
-    string[] chapterUrlsArray = Enumerable.Range(1, 14).Select(c => @"""chapter.aspx?c=" + c + @"""").ToArray();
+    string[] chapterUrlsArray = Enumerable.Range(1, chapterCount).Select(c => @"""chapter.aspx?c=" + c + @"""").ToArray();
     return string.Join(",", chapterUrlsArray);
   }
 </script>
 {
   "title": "The Lean Startup",
   "author": "Eric Ries",
-  "chapterUrls": [<%= ChapterUrls(14) %>]
+  "chapterUrls": [<%= ChapterUrls(5) %>]
 }
