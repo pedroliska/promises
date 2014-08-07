@@ -6,7 +6,7 @@
 
   protected void page_load(object o, EventArgs e)
   {
-    var maxSeconds = 4;
+    var maxSeconds = 3;
     _randomMiliseconds = RandomGenerator.Next(maxSeconds * 1000);
     System.Threading.Thread.Sleep(_randomMiliseconds);
   }
@@ -34,8 +34,9 @@
   {
     get
     {
+      var repeat = 5;
       var sentence = "This is the lengthy content of chapter " + ChapterNumber + ". Delayed " + _randomMiliseconds + " miliseconds.";
-      var array = Enumerable.Range(0, 20).Select(x => sentence).ToArray();
+      var array = Enumerable.Range(0, repeat).Select(x => sentence).ToArray();
       return string.Join(" ", array);
     }
   }

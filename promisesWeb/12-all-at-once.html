@@ -25,18 +25,10 @@
       }
 
       function getAndDisplayChapters(book) {
-
-        var chapterPromises = book.chapterUrls.map(jsonPromise);
-
-        var interpolatedPromises = chapterPromises.reduce(function (sequence, chapterPromise) {
-
-          return sequence.then(function () {
-            return chapterPromise;
-          }).then(displayChapter);
-
-        }, Promise.resolve());
-
-        return Promise.all(interpolatedPromises);
+        var promises = book.chapterUrls.map(function (url) {
+          return jsonPromise(url).then(displayChapter);
+        });
+        return Promise.all(promises);
       }
 
       jsonPromise('book.aspx')
