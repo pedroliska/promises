@@ -12,15 +12,14 @@
 
       jsonPromise('book.aspx').then(function (bookInfo) {
 
-        var promises = bookInfo.chapterUrls.map(function (url) {
-          return jsonPromise(url).then(function (chapterInfo) {
-            var html = '<p><strong>' + chapterInfo.title + '</strong> ' + chapterInfo.content + '</p>';
-            $('#chapters').append(html);
-          });
-        });
+        var promises = bookInfo.chapterUrls.map(jsonPromise);
         return Promise.all(promises);
 
-      }).then(function () {
+      }).then(function (chapterInfos) {
+        chapterInfos.forEach(function (chapterInfo) {
+            var html = '<p><strong>'+ chapterInfo.title +'</strong> ' + chapterInfo.content + '</p>';
+            $('#chapters').append(html);
+        });
         $('#chapters').append('<strong>ALL DONE!</strong>');
       });
 

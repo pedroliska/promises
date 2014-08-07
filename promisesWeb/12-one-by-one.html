@@ -14,24 +14,27 @@
       }
 
       jsonPromise('book.aspx').then(function (bookData) {
-
         $('#title').html(bookData.title);
         $('#author').html(bookData.author);
 
-        var promises = bookData.chapterUrls.map(jsonPromise);
-        return promises.reduce(function (sequence, chapterPromise) {
+        var promiseSequence = Promise.resolve();
+        bookData.chapterUrls.forEach(function (url) {
 
-          return sequence.then(function () {
-            return chapterPromise;
+          promiseSequence = promiseSequence.then(function () {
+            return jsonPromise(url);
           }).then(function (chapterInfo) {
             $('#chapters').append(chapterInfoToHtml(chapterInfo));
           });
 
-        }, Promise.resolve());
+        });
+        return promiseSequence;
 
       }).then(function () {
         $('#chapters').append('<p style="font-weight: bold">ALL DONE!</p>');
+
+
       });
+
 
     });
   </script>

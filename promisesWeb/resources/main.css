@@ -3,3 +3,6 @@
     font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Arial, Helvetica, Verdana, sans-serif;
     color: #444;
 }
+h1, #author {
+  text-align: center;
+}

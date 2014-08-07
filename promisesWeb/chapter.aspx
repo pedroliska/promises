@@ -15,14 +15,13 @@
   {
     get
     {
-      //var generatorFromSession = this.Session["randomGenerator"] as Random;
-      //if (generatorFromSession == null)
-      //{
-      //  generatorFromSession = new Random();
-      //  this.Session["randomGenerator"] = generatorFromSession;
-      //}
-      //return generatorFromSession;
-      return new Random();
+      var generatorFromSession = this.Session["randomGenerator"] as Random;
+      if (generatorFromSession == null)
+      {
+        generatorFromSession = new Random();
+        Session["randomGenerator"] = generatorFromSession;
+      }
+      return generatorFromSession;
     }
   }
 

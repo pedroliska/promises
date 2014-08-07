@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+  <link type="text/css" rel="Stylesheet" href="/resources/main.css" />
   <script src="resources/jquery.js"></script>
   <script>
     $(document).ready(function () {
@@ -9,16 +10,14 @@
         return Promise.resolve($.ajax(url));
       }
 
-      jsonPromise('book.aspx').then(function(data) {
-        $('#out').html(data.author);
-      });
-
     });
   </script>
 </head>
-<body>
-  
-  <pre id="out"></pre>
+  <body>
+
+    <h1 id="title"></h1>
+  <p id="author"></p>
+  <div id="chapters"></div>
 
 </body>
 </html>
