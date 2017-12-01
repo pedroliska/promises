@@ -9,7 +9,7 @@
 
 </script>
 {
-"title": "The Lean Startup",
-"author": "Eric Ries",
+"title": "Wool",
+"author": "Hugh Howey",
 "chapterUrls": [<%= ChapterUrls(5) %>]
 }
