@@ -6,15 +6,18 @@
       $(document).ready(() => {
 
           function clickPromise(elementId) {
-              var promise = new Promise((resolveFn, rejectFn) => {
-                  $('#' + elementId).click(resolveFn);
+              let promise = new Promise(resolveFn => {
+                  $(elementId).click(resolveFn);
               });
               return promise;
           }
 
-          clickPromise('button1').then(() => {
-              $('#image1').css('display', 'inline');
-          });
+          function displaySmile() {
+              $('#image1').css('display', 'inline').attr('src', 'resources/happy.png');
+          }
+
+          clickPromise('#button1')
+              .then(displaySmile);
 
       });
   </script>
@@ -22,7 +25,7 @@
 <body>
 
   <button id="button1">Show image</button><br />
-  <img id="image1" src="resources/happy.png" style="display: none" />
+  <img id="image1" src="" style="display: none" />
 
 </body>
 </html>

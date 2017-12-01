@@ -3,17 +3,21 @@
 <head>
   <script src="resources/jquery.js"></script>
   <script>
-    $(document).ready(() => {
+      $(document).ready(() => {
 
+          function displaySmile() {
+              $('#image1').css('display', 'inline').attr('src', 'resources/happy.png');
+          }
 
+          $('#button1').click(displaySmile);
 
-    });
+      });
   </script>
 </head>
 <body>
 
   <button id="button1">Show image</button><br />
-  <img id="image1" src="resources/happy.png" style="display: none"/>
+  <img id="image1" src="" style="display: none" />
 
 </body>
 </html>
