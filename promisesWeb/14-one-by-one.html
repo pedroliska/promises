@@ -6,7 +6,7 @@
   <script>
       $(document).ready(function() {
 
-          function jsonPromise(url) {
+        function ajaxPromise(url) {
               return Promise.resolve($.ajax(url));
           }
           function displayBook(book) {
@@ -29,13 +29,13 @@
               return book.chapterUrls.reduce(function(sequence, url) {
 
                   return sequence.then(function() {
-                      return jsonPromise(url);
+                    return ajaxPromise(url);
                   }).then(displayChapter);
 
               }, Promise.resolve());
           }
 
-          jsonPromise('book.aspx')
+          ajaxPromise('book.aspx')
               .then(displayBook)
               .then(getAndDisplayChapters)
               .then(displayDone);

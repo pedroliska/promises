@@ -6,7 +6,7 @@
   <script>
       $(document).ready(function() {
 
-          function jsonPromise(url) {
+        function ajaxPromise(url) {
               return Promise.resolve($.ajax(url));
           }
           function displayBook(book) {
@@ -26,7 +26,7 @@
 
           function getAndDisplayChapters(book) {
 
-              var chapterPromises = book.chapterUrls.map(jsonPromise);
+            var chapterPromises = book.chapterUrls.map(ajaxPromise);
 
               var interpolatedPromises = chapterPromises.reduce(function(sequence, chapterPromise) {
 
@@ -39,7 +39,7 @@
               return interpolatedPromises;
           }
 
-          jsonPromise('book.aspx')
+          ajaxPromise('book.aspx')
               .then(displayBook)
               .then(getAndDisplayChapters)
               .then(displayDone);

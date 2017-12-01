@@ -6,7 +6,7 @@
   <script>
       $(document).ready(function() {
 
-          function getJsonPromise(url) {
+          function ajaxPromise(url) {
               return Promise.resolve($.ajax(url));
           }
           function displayBook(book) {
@@ -16,7 +16,11 @@
           }
 
           function displayChapter(chapter) {
-              var html = '<p><strong>' + chapter.title + '</strong> ' + chapter.content + '</p>';
+              var html = '<p><strong>'
+                  + chapter.title
+                  + '</strong> '
+                  + chapter.content
+                  + '</p>';
               $('#chapters').append(html);
           }
 
@@ -25,13 +29,13 @@
           }
 
           function getAndDisplayChapters(book) {
-              var promises = book.chapterUrls.map(function(url) {
-                  return getJsonPromise(url).then(displayChapter);
+              var promises = book.chapterUrls.map(url => {
+                  return ajaxPromise(url).then(displayChapter);
               });
               return Promise.all(promises);
           }
 
-          getJsonPromise('book.aspx')
+          ajaxPromise('book.aspx')
               .then(displayBook)
               .then(getAndDisplayChapters)
               .then(displayDone);
