@@ -4,39 +4,39 @@
   <link type="text/css" rel="Stylesheet" href="/resources/main.css" />
   <script src="resources/jquery.js"></script>
   <script>
-    $(document).ready(function () {
+      $(document).ready(function() {
 
-      function jsonPromise(url) {
-        return Promise.resolve($.ajax(url));
-      }
-      function displayBook(book) {
-        $('#title').html(book.title);
-        $('#author').html(book.author);
-        return book;
-      }
+          function getJsonPromise(url) {
+              return Promise.resolve($.ajax(url));
+          }
+          function displayBook(book) {
+              $('#title').html(book.title);
+              $('#author').html(book.author);
+              return book;
+          }
 
-      function displayChapter(chapter) {
-        var html = '<p><strong>' + chapter.title + '</strong> ' + chapter.content + '</p>';
-        $('#chapters').append(html);
-      }
+          function displayChapter(chapter) {
+              var html = '<p><strong>' + chapter.title + '</strong> ' + chapter.content + '</p>';
+              $('#chapters').append(html);
+          }
 
-      function displayDone() {
-        $('#chapters').append('<p style="font-weight: bold">DONE!</p>');
-      }
+          function displayDone() {
+              $('#chapters').append('<p style="font-weight: bold">DONE!</p>');
+          }
 
-      function getAndDisplayChapters(book) {
-        var promises = book.chapterUrls.map(function (url) {
-          return jsonPromise(url).then(displayChapter);
-        });
-        return Promise.all(promises);
-      }
+          function getAndDisplayChapters(book) {
+              var promises = book.chapterUrls.map(function(url) {
+                  return getJsonPromise(url).then(displayChapter);
+              });
+              return Promise.all(promises);
+          }
 
-      jsonPromise('book.aspx')
-        .then(displayBook)
-        .then(getAndDisplayChapters)
-        .then(displayDone);
+          getJsonPromise('book.aspx')
+              .then(displayBook)
+              .then(getAndDisplayChapters)
+              .then(displayDone);
 
-    });
+      });
   </script>
 </head>
 <body>

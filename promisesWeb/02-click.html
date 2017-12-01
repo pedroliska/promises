@@ -3,26 +3,26 @@
 <head>
   <script src="resources/jquery.js"></script>
   <script>
-    $(document).ready(function () {
+      $(document).ready(() => {
 
-      function clickPromise(elementId) {
-        var promise = new Promise(function(resolveFn, rejectFn) {
-          $('#' + elementId).click(resolveFn);
-        });
-        return promise;
-      }
+          function clickPromise(elementId) {
+              var promise = new Promise((resolveFn, rejectFn) => {
+                  $('#' + elementId).click(resolveFn);
+              });
+              return promise;
+          }
 
-      clickPromise('button1').then(function() {
-        $('#image1').css('display', 'inline');
+          clickPromise('button1').then(() => {
+              $('#image1').css('display', 'inline');
+          });
+
       });
-
-    });
   </script>
 </head>
 <body>
 
   <button id="button1">Show image</button><br />
-  <img id="image1" src="resources/happy.png" style="display: none"/>
+  <img id="image1" src="resources/happy.png" style="display: none" />
 
 </body>
 </html>

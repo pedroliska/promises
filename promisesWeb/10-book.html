@@ -4,9 +4,9 @@
   <link type="text/css" rel="Stylesheet" href="/resources/main.css" />
   <script src="resources/jquery.js"></script>
   <script>
-    $(document).ready(function () {
+    $(document).ready(() => {
 
-      function jsonPromise(url) {
+      function getJsonPromise(url) {
         return Promise.resolve($.ajax(url));
       }
 

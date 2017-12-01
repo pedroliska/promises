@@ -4,26 +4,26 @@
   <link type="text/css" rel="Stylesheet" href="/resources/main.css" />
   <script src="resources/jquery.js"></script>
   <script>
-    $(document).ready(function () {
+      $(document).ready(function() {
 
-      function jsonPromise(url) {
-        return Promise.resolve($.ajax(url));
-      }
+          function jsonPromise(url) {
+              return Promise.resolve($.ajax(url));
+          }
 
-      jsonPromise('book.aspx').then(function (bookInfo) {
+          jsonPromise('book.aspx').then(function(bookInfo) {
 
-        var promises = bookInfo.chapterUrls.map(jsonPromise);
-        return Promise.all(promises);
+              var promises = bookInfo.chapterUrls.map(jsonPromise);
+              return Promise.all(promises);
 
-      }).then(function (chapterInfos) {
-        chapterInfos.forEach(function (chapterInfo) {
-            var html = '<p><strong>'+ chapterInfo.title +'</strong> ' + chapterInfo.content + '</p>';
-            $('#chapters').append(html);
-        });
-        $('#chapters').append('<strong>ALL DONE!</strong>');
+          }).then(function(chapterInfos) {
+              chapterInfos.forEach(function(chapterInfo) {
+                  var html = '<p><strong>' + chapterInfo.title + '</strong> ' + chapterInfo.content + '</p>';
+                  $('#chapters').append(html);
+              });
+              $('#chapters').append('<strong>ALL DONE!</strong>');
+          });
+
       });
-
-    });
   </script>
 </head>
 <body>

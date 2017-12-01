@@ -3,29 +3,29 @@
 <head>
   <script src="resources/jquery.js"></script>
   <script>
-    $(document).ready(function () {
+      $(document).ready(function() {
 
-      function clickPromise(elementId) {
-        var promise = new Promise(function (resolveFn, rejectFn) {
-          $('#' + elementId).click(resolveFn);
-        });
-        return promise;
-      }
-      function delayPromise(seconds) {
-        var promise = new Promise(function (resolve, reject) {
-          setTimeout(resolve, seconds * 1000);
-        });
-        return promise;
-      }
+          function clickPromise(elementId) {
+              var promise = new Promise((resolveFn, rejectFn) => {
+                  $('#' + elementId).click(resolveFn);
+              });
+              return promise;
+          }
+          function delayPromise(seconds) {
+              var promise = new Promise((resolve, reject) => {
+                  setTimeout(resolve, seconds * 1000);
+              });
+              return promise;
+          }
 
-      clickPromise('button1').then(function () {
-        $('#image1').css('display', 'inline');
-        return delayPromise(2);
-      }).then(function () {
-        $('#image1').attr('src', 'resources/happy.png');
+          clickPromise('button1').then(() => {
+              $('#image1').css('display', 'inline');
+              return delayPromise(2);
+          }).then(() => {
+              $('#image1').attr('src', 'resources/happy.png');
+          });
+
       });
-
-    });
   </script>
 </head>
 <body>
